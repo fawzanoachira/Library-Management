@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Entity
 @Table(name = "tblReadingLog")
@@ -25,6 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Accessors(chain = true)
 public class ReadingLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
