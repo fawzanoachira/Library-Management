@@ -13,15 +13,15 @@ public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, St
 	@Autowired
 	private UserService userService;
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isValid'");
-    }
+    // @Override
+    // public boolean isValid(String value, ConstraintValidatorContext context) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'isValid'");
+    // }
 
-	// @Override
-	// public boolean isValid(String value, ConstraintValidatorContext context) {
-	// 	return value != null && !userService.isEmailAlreadyInUse(value);
-	// }
+	@Override
+	public boolean isValid(String value, ConstraintValidatorContext context) {
+		return !(value != null && userService.isEmailAlreadyInUse(value));
+	}
 	
 }

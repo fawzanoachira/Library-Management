@@ -2,6 +2,7 @@ package com.library.library_api.dto;
 
 import org.springframework.stereotype.Component;
 
+import com.library.library_api.annotations.UniqueEmail;
 import com.library.library_api.models.User;
 
 import jakarta.validation.Valid;
@@ -20,6 +21,7 @@ public class UserDto {
     private String name;
 
     @NotBlank(message = "email is required")
+    @UniqueEmail(message = "A user already registered with this email")
     private String email;
 
     @NotBlank(message = "password is required")

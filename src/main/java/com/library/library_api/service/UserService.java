@@ -16,7 +16,8 @@ public class UserService {
         return savedUser;
     }
 
-    // public User isEmailAlreadyInUse(String email){
-    //     userRepository.
-    // }
+    public User isEmailAlreadyInUse(String email){
+        User emailAlreadyInUse = userRepository.isEmailAlreadyInUse(email);
+        return emailAlreadyInUse;
+    }
 }

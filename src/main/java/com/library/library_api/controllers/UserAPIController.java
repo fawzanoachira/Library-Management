@@ -13,7 +13,7 @@ import com.library.library_api.models.User;
 import com.library.library_api.service.UserService;
 
 @RestController
-@RequestMapping("/users/")
+@RequestMapping("/api/users/")
 public class UserAPIController {
     @Autowired
     UserService userService;
