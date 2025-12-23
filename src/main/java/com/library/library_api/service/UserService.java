@@ -16,8 +16,8 @@ public class UserService {
         return savedUser;
     }
 
-    public User isEmailAlreadyInUse(String email){
-        User emailAlreadyInUse = userRepository.isEmailAlreadyInUse(email);
+    public Boolean existsByEmail(String email){
+        Boolean emailAlreadyInUse = userRepository.existsByEmail(email);
         return emailAlreadyInUse;
     }
 }
