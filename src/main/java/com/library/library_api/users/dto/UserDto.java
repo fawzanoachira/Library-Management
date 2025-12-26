@@ -1,9 +1,9 @@
-package com.library.library_api.dto;
+package com.library.library_api.users.dto;
 
 import org.springframework.stereotype.Component;
 
-import com.library.library_api.annotations.UniqueEmail;
-import com.library.library_api.models.User;
+import com.library.library_api.users.annotations.UniqueEmail;
+import com.library.library_api.users.models.User;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

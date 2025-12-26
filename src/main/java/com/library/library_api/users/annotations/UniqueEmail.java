@@ -1,11 +1,11 @@
-package com.library.library_api.annotations;
+package com.library.library_api.users.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.library.library_api.validators.UniqueEmailValidator;
+import com.library.library_api.users.validators.UniqueEmailValidator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

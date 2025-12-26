@@ -1,4 +1,4 @@
-package com.library.library_api.controllers;
+package com.library.library_api.users.controllers.users;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.library.library_api.dto.UserDto;
-import com.library.library_api.exceptions.NoUserFoundException;
-import com.library.library_api.models.User;
-import com.library.library_api.service.UserService;
+import com.library.library_api.users.dto.UserDto;
+import com.library.library_api.users.exceptions.NoUserFoundException;
+import com.library.library_api.users.models.User;
+import com.library.library_api.users.service.UserService;
 
 @RestController
 @RequestMapping("/api/users/")
@@ -37,17 +37,9 @@ public class UserAPIController {
     }
 
     @GetMapping("get-user")
-    public Map<String, String> getUser(@RequestParam String email) throws NoUserFoundException {
-        Map<String, String> userMap = new HashMap<>();
+    public User getUser(@RequestParam String email) throws NoUserFoundException {
         User user = userService.getUser(email);
-        if(user == null){
-            userMap.put("message", "No user available with");
-            return userMap;
-        }
-        userMap.put("email", user.getEmail());
-        userMap.put("name", user.getName());
-        userMap.put("passwordHashed", user.getPasswordHashed());
-        return userMap;
+        return user;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -61,4 +53,12 @@ public class UserAPIController {
         });
         return errors;
     }
+
+    // @ResponseStatus(HttpStatus.BAD_REQUEST)
+    // @ExceptionHandler(NoUserFoundException.class)
+    // public Map<String, String> handleNoUserFoundExceptions(NoUserFoundException ex) {
+    //     Map<String, String> errors = new HashMap<>();
+    //     errors.put("msg", ex.getMessage());
+    //     return errors;
+    // }
 }

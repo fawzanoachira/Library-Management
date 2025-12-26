@@ -1,4 +1,4 @@
-package com.library.library_api.models;
+package com.library.library_api.users.models;
 
 import java.time.LocalDateTime;
 
