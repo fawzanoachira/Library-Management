@@ -10,4 +10,5 @@ import com.library.library_api.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>{
     public Boolean existsByEmail(String email);
+    public User findByEmail(String email);
 }

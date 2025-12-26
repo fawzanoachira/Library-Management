@@ -20,4 +20,9 @@ public class UserService {
         Boolean emailAlreadyInUse = userRepository.existsByEmail(email);
         return emailAlreadyInUse;
     }
+
+    public User getUser(String email){
+        User byEmail = userRepository.findByEmail(email);
+        return byEmail;
+    }
 }
