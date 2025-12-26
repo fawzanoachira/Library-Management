@@ -1,5 +1,6 @@
 package com.library.library_api.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,5 @@ import com.library.library_api.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>{
     public Boolean existsByEmail(String email);
-    public User findByEmail(String email);
+    public Optional<User> findByEmail(String email);
 }
