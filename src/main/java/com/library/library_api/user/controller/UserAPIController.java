@@ -1,13 +1,16 @@
 package com.library.library_api.user.controller;
 
 import java.util.HashMap;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-// import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +53,15 @@ public class UserAPIController {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "User updated successfully");
         hashMap.put("data", updateUser);
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @DeleteMapping("delete-user/{userId}")
+    public ResponseEntity<HashMap<String, Object>> deleteUser(@PathVariable UUID userId) throws NoUserFoundException{
+        User deleteUser = userService.deleteUser(userId);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("msg", "User deleted successfully");
+        hashMap.put("data", deleteUser);
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 }

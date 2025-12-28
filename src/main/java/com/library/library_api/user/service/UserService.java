@@ -41,4 +41,10 @@ public class UserService {
     public boolean existsByEmailAndNotUserId(String email, UUID id) {
         return userRepository.existsByEmailAndIdNot(email, id);
     }
+
+    public User deleteUser(UUID id) throws NoUserFoundException {
+        User userFetched = userRepository.findById(id).orElseThrow(() -> new NoUserFoundException("No user found for this id"));
+        userRepository.delete(userFetched);
+        return userFetched;
+    }
 }
