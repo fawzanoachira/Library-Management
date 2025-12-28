@@ -1,9 +1,9 @@
-package com.library.library_api.users.validators;
+package com.library.library_api.user.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.library.library_api.users.annotations.UniqueEmail;
-import com.library.library_api.users.service.UserService;
+import com.library.library_api.user.annotations.UniqueEmail;
+import com.library.library_api.user.service.UserService;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

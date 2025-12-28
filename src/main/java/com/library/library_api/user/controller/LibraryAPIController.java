@@ -1,4 +1,4 @@
-package com.library.library_api.users.controllers;
+package com.library.library_api.user.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

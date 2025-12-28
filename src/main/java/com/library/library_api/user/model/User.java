@@ -1,7 +1,7 @@
-package com.library.library_api.users.models;
+package com.library.library_api.user.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,35 +19,26 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Entity
-@Table(name = "tblBook")
+@Table(name = "tblUser")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Accessors(chain = true)
-public class Book {
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    private Long id;
-    
-    @Column(name = "title")
-    private String title;
+    private UUID id;
 
-    @Column(name = "author")
-    private String author;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "isbn")
-    private String isbn;
+    @Column(name = "email")
+    private String email;
 
-    @Column(name = "genre")
-    private String genre;
-
-    @Column(name = "description")
-    private String description;
-
-    @ManyToMany(mappedBy = "book")
-    private List<Shelf> shelf;
+    @Column(name = "passwordHashed")
+    private String passwordHashed;
 
     @CreationTimestamp
     @Column(name = "createdAt")
@@ -56,5 +46,5 @@ public class Book {
 
     @UpdateTimestamp
     @Column(name = "updatedAt")
-    private LocalDateTime updatedAt; 
+    private LocalDateTime updatedAt;  
 }

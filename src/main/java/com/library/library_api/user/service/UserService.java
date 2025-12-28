@@ -1,11 +1,11 @@
-package com.library.library_api.users.service;
+package com.library.library_api.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.library.library_api.users.models.User;
-import com.library.library_api.users.repository.UserRepository;
-import com.library.library_api.users.exceptions.NoUserFoundException;
+import com.library.library_api.user.exception.NoUserFoundException;
+import com.library.library_api.user.model.User;
+import com.library.library_api.user.repository.UserRepository;
 
 @Service
 public class UserService {

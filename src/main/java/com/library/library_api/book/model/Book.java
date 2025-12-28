@@ -1,4 +1,4 @@
-package com.library.library_api.users.models;
+package com.library.library_api.book.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,16 +6,14 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.CascadeType;
+import com.library.library_api.user.model.Shelf;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,32 +22,35 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Entity
-@Table(name = "tblShelf")
+@Table(name = "tblBook")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Accessors(chain = true)
-public class Shelf {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    
+    @Column(name = "title")
+    private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @Column(name = "author")
+    private String author;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "isbn")
+    private String isbn;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "tblShelfBook", 
-        joinColumns = { @JoinColumn(name = "bookId") }, 
-        inverseJoinColumns = { @JoinColumn(name = "shelfId") }
-    )
-    private List<Book> book;
+    @Column(name = "genre")
+    private String genre;
+
+    @Column(name = "description")
+    private String description;
+
+    @ManyToMany(mappedBy = "book")
+    private List<Shelf> shelf;
 
     @CreationTimestamp
     @Column(name = "createdAt")
@@ -57,5 +58,5 @@ public class Shelf {
 
     @UpdateTimestamp
     @Column(name = "updatedAt")
-    private LocalDateTime updatedAt;  
+    private LocalDateTime updatedAt; 
 }

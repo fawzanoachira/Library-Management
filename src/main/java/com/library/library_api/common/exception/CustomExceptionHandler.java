@@ -1,4 +1,4 @@
-package com.library.library_api.api.error_handlers;
+package com.library.library_api.common.exception;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import com.library.library_api.users.exceptions.NoUserFoundException;
+
+import com.library.library_api.user.exception.NoUserFoundException;
 
 @ControllerAdvice
 public class CustomExceptionHandler{

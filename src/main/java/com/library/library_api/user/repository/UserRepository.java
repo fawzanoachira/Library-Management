@@ -1,4 +1,4 @@
-package com.library.library_api.users.repository;
+package com.library.library_api.user.repository;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.library.library_api.users.models.User;
+import com.library.library_api.user.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>{
