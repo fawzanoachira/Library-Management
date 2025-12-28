@@ -1,5 +1,7 @@
 package com.library.library_api.user.service;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,18 @@ public class UserService {
     public User getUser(String email) throws NoUserFoundException {
         User byEmail = userRepository.findByEmail(email).orElseThrow(() -> new NoUserFoundException("No user found for this email: "+ email));
         return byEmail;
+    }
+
+    public User updateUser(User user) {
+        User byId = userRepository.findById(user.getId()).get();
+        byId.setName(user.getName());
+        byId.setEmail(user.getEmail());
+        byId.setPasswordHashed(user.getPasswordHashed());
+        User save = userRepository.save(byId);
+        return save;
+    }
+
+    public boolean existsByEmailAndNotUserId(String email, UUID id) {
+        return userRepository.existsByEmailAndIdNot(email, id);
     }
 }

@@ -1,35 +1,30 @@
 package com.library.library_api.user.dto;
 
-import com.library.library_api.user.annotations.UniqueEmail;
+import java.util.UUID;
+
+import com.library.library_api.user.annotations.UniqueEmailForUpdate;
 import com.library.library_api.user.model.User;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class UserDto {
+@UniqueEmailForUpdate(message = "Email already in use by another user")
+public class UpdateUserDto {
 
     @Valid
-
-    @NotBlank(message = "name is required")
+    private UUID id;
     private String name;
-
-    @NotBlank(message = "email is required")
-    @UniqueEmail(message = "A user already registered with this email")
     private String email;
-
-    @NotBlank(message = "password is required")
-    @NotNull(message = "password is required")
     @Size(min = 6, message = "password should be atleast 6 characters")
     private String passwordHashed;
 
     public User toUser() {
         return new User()
+                .setId(id)
                 .setName(name)
-                .setEmail(email.toLowerCase())
+                .setEmail(email != null ? email.toLowerCase() : null)
                 .setPasswordHashed(passwordHashed);
     }
 
