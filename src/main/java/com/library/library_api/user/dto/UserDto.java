@@ -1,7 +1,5 @@
 package com.library.library_api.user.dto;
 
-import org.springframework.stereotype.Component;
-
 import com.library.library_api.user.annotations.UniqueEmail;
 import com.library.library_api.user.model.User;
 
@@ -12,7 +10,6 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-@Component
 public class UserDto {
 
     @Valid

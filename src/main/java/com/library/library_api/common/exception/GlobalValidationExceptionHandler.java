@@ -29,7 +29,7 @@ public class GlobalValidationExceptionHandler {
         });
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("data", Collections.emptyMap());
-        hashMap.put("msg", hashSet);
+        hashMap.put("msg", String.join(", ", hashSet));
         return new ResponseEntity<>(hashMap, HttpStatus.BAD_REQUEST);
     }
 }
