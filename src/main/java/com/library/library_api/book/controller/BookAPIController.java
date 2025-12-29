@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.library_api.book.dto.CreateBookDto;
+import com.library.library_api.book.dto.UpdateBookDto;
 import com.library.library_api.book.exception.NoBookFoundException;
 import com.library.library_api.book.model.Book;
 import com.library.library_api.book.service.BookService;
@@ -34,11 +38,30 @@ public class BookAPIController {
     }
 
     @GetMapping("get-book")
-    public ResponseEntity<HashMap<String, Object>> getBook(@RequestParam Long id) throws NoBookFoundException{
+    public ResponseEntity<HashMap<String, Object>> getBook(@RequestParam Long id) throws NoBookFoundException {
         Book book = bookService.getBook(id);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "Book fetched successfully");
         hashMap.put("data", book);
-        return new ResponseEntity<>(hashMap, HttpStatus.CREATED);
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @PatchMapping("update-book")
+    public ResponseEntity<HashMap<String, Object>> updateBook(@RequestBody @Validated UpdateBookDto updateBookDto)
+            throws NoBookFoundException {
+        Book updateBook = bookService.updateBook(updateBookDto.toBook());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("msg", "Book fetched successfully");
+        hashMap.put("data", updateBook);
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @DeleteMapping("delete-book/{id}")
+    public ResponseEntity<HashMap<String, Object>> deleteBook(@PathVariable Long id) throws NoBookFoundException{
+        Book deleteBook = bookService.deleteBook(id);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("msg", "Book deleted successfully");
+        hashMap.put("data", deleteBook);
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 }
