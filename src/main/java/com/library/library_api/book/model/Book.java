@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
+// import org.hibernate.annotations.Fetch;
+// import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.library.library_api.user.model.Shelf;
@@ -50,6 +52,7 @@ public class Book {
     private String description;
 
     @ManyToMany(mappedBy = "book")
+    // @Fetch(FetchMode.JOIN) // Fix the issue of -- Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Cannot lazily initialize collection (no session)] --
     private List<Shelf> shelf;
 
     @CreationTimestamp

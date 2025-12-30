@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.library_api.book.dto.CreateBookDto;
+import com.library.library_api.book.dto.DeleteBookResponseDto;
 import com.library.library_api.book.dto.UpdateBookDto;
 import com.library.library_api.book.exception.NoBookFoundException;
 import com.library.library_api.book.model.Book;
@@ -59,9 +60,10 @@ public class BookAPIController {
     @DeleteMapping("delete-book/{id}")
     public ResponseEntity<HashMap<String, Object>> deleteBook(@PathVariable Long id) throws NoBookFoundException{
         Book deleteBook = bookService.deleteBook(id);
+        DeleteBookResponseDto responseData = new DeleteBookResponseDto(deleteBook);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "Book deleted successfully");
-        hashMap.put("data", deleteBook);
+        hashMap.put("data", responseData);
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 }
