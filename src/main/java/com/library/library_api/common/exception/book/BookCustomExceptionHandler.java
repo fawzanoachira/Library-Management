@@ -9,12 +9,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.library.library_api.book.exception.NoBookFoundException;
+import com.library.library_api.book.exception.NoShelfFoundException;
 
 @ControllerAdvice
 public class BookCustomExceptionHandler{
     
     @ExceptionHandler(NoBookFoundException.class)
     public ResponseEntity<HashMap<String, Object>> handleNoUserFoundExceptions(NoBookFoundException ex) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("msg", ex.getMessage());
+        hashMap.put("data", Collections.emptyMap());
+        return new ResponseEntity<>(hashMap, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoShelfFoundException.class)
+    public ResponseEntity<HashMap<String, Object>> handleNoShelfFoundException(NoShelfFoundException ex) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", ex.getMessage());
         hashMap.put("data", Collections.emptyMap());
