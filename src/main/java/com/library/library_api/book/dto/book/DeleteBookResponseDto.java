@@ -1,4 +1,4 @@
-package com.library.library_api.book.dto;
+package com.library.library_api.book.dto.book;
 
 import com.library.library_api.book.model.Book;
 

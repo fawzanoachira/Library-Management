@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.library.library_api.book.dto.BookResponseDto;
-import com.library.library_api.book.dto.CreateBookDto;
-import com.library.library_api.book.dto.DeleteBookResponseDto;
-import com.library.library_api.book.dto.UpdateBookDto;
+import com.library.library_api.book.dto.book.BookResponseDto;
+import com.library.library_api.book.dto.book.CreateBookDto;
+import com.library.library_api.book.dto.book.DeleteBookResponseDto;
+import com.library.library_api.book.dto.book.UpdateBookDto;
 import com.library.library_api.book.exception.NoBookFoundException;
 import com.library.library_api.book.model.Book;
 import com.library.library_api.book.service.BookService;
