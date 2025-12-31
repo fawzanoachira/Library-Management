@@ -1,5 +1,9 @@
 package com.library.library_api.book.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,12 @@ public class BookService {
     public Book createBook(Book book) {
         Book save = bookRepository.save(book);
         return save;
+    }
+
+    public List<Book> getAllBooks() {
+        Iterable<Book> all = bookRepository.findAll();
+        List<Book> collect = StreamSupport.stream(all.spliterator(), false).collect(Collectors.toList());
+        return collect;
     }
 
     public Book getBook(Long id) throws NoBookFoundException {
