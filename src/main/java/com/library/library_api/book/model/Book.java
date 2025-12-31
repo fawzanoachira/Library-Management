@@ -8,8 +8,6 @@ import org.hibernate.annotations.CreationTimestamp;
 // import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.library.library_api.user.model.Shelf;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
