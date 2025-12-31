@@ -1,4 +1,4 @@
-package com.library.library_api.book.controller;
+package com.library.library_api.book.controller.shelfcontroller;
 
 import java.util.HashMap;
 
@@ -18,7 +18,7 @@ import com.library.library_api.user.exception.NoUserFoundException;
 
 @RestController
 @RequestMapping("/api/shelf/")
-public class ShelfAPIController {
+public class CreateShelfAPIController {
     @Autowired
     CreateShelfService createShelfService;
 
