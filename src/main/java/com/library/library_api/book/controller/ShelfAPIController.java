@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.library_api.book.dto.shelf.ShelfCreateDto;
 import com.library.library_api.book.model.Shelf;
-import com.library.library_api.book.service.ShelfService;
+import com.library.library_api.book.service.shelf.CreateShelfService;
 import com.library.library_api.user.exception.NoUserFoundException;
 
 @RestController
 @RequestMapping("/api/shelf/")
 public class ShelfAPIController {
     @Autowired
-    ShelfService shelfService;
+    CreateShelfService createShelfService;
 
     @PostMapping("create")
     public ResponseEntity<HashMap<String, Object>> createShelf(@RequestBody @Validated ShelfCreateDto shelfCreateDto) throws NoUserFoundException {
-        Shelf shelf = shelfService.createShelf(shelfCreateDto);
+        Shelf shelf = createShelfService.createShelf(shelfCreateDto);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "Shelf created successfully");
         hashMap.put("data", shelf);

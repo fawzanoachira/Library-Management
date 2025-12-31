@@ -1,4 +1,4 @@
-package com.library.library_api.book.service;
+package com.library.library_api.book.service.shelf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import com.library.library_api.user.model.User;
 import com.library.library_api.user.service.UserService;
 
 @Service
-public class ShelfService {
+public class CreateShelfService {
     @Autowired
     ShelfRepository shelfRepository;
 
