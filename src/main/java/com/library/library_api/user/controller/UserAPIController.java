@@ -40,7 +40,7 @@ public class UserAPIController {
 
     @GetMapping("get-user")
     public ResponseEntity<HashMap<String, Object>> getUser(@RequestParam String email) throws NoUserFoundException {
-        User user = userService.getUser(email);
+        User user = userService.getUserByEmail(email);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "User fetched successfully");
         hashMap.put("data", user);

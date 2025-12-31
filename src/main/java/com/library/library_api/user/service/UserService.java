@@ -23,8 +23,13 @@ public class UserService {
         Boolean emailAlreadyInUse = userRepository.existsByEmail(email);
         return emailAlreadyInUse;
     }
+    
+    public User getUser(UUID id) throws NoUserFoundException {
+        User byEmail = userRepository.findById(id).orElseThrow(() -> new NoUserFoundException("No user found for this email: "+ id));
+        return byEmail;
+    }
 
-    public User getUser(String email) throws NoUserFoundException {
+    public User getUserByEmail(String email) throws NoUserFoundException {
         User byEmail = userRepository.findByEmail(email).orElseThrow(() -> new NoUserFoundException("No user found for this email: "+ email));
         return byEmail;
     }
