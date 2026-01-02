@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.library.library_api.book.dto.shelf.ShelfResponseDto;
 import com.library.library_api.book.model.Shelf;
 import com.library.library_api.book.service.shelf.GetAllShevesService;
 
@@ -18,13 +19,15 @@ import com.library.library_api.book.service.shelf.GetAllShevesService;
 public class GetAllShelfAPIController {
     @Autowired
     GetAllShevesService getAllShevesService;
-    
+
     @GetMapping()
-    public ResponseEntity<HashMap<String, Object>> getAllShelves(){
+    public ResponseEntity<HashMap<String, Object>> getAllShelves() {
         List<Shelf> allShelf = getAllShevesService.getAllShelf();
+        List<ShelfResponseDto> allShelfResponseDtos = allShelf.stream().map(shelf -> new ShelfResponseDto(shelf))
+                .toList();
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "All shelves fetched successfully");
-        hashMap.put("data", allShelf);
+        hashMap.put("data", allShelfResponseDtos);
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 }

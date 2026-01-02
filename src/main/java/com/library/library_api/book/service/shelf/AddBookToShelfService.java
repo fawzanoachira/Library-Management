@@ -1,6 +1,6 @@
 package com.library.library_api.book.service.shelf;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +23,15 @@ public class AddBookToShelfService {
     @Autowired
     ShelfRepository shelfRepository;
 
-    public Shelf addBookToShelf(Long shelfId, AddBookToShelfDto addBookToShelfDto) throws NoShelfFoundException{
+    public Shelf addBookToShelf(Long shelfId, AddBookToShelfDto addBookToShelfDto) throws NoShelfFoundException {
         Shelf shelf = getShelfService.getShelf(shelfId);
         Book book = bookRepository.findById(addBookToShelfDto.getBookId()).get();
-        ArrayList<Book> listOfBooks = new ArrayList<>();
-        listOfBooks.add(book);
-        shelf.setBook(listOfBooks);
+        List<Book> listOfBooks = shelf.getBook();
+
+        if (listOfBooks.stream().anyMatch(listOfBook -> book.getId().equals(listOfBook.getId()))) {
+        } else {
+            listOfBooks.add(book);
+        }
 
         Shelf save = shelfRepository.save(shelf);
         return save;

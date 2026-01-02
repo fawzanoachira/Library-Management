@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.library.library_api.book.dto.shelf.ShelfResponseDto;
 import com.library.library_api.book.exception.NoShelfFoundException;
 import com.library.library_api.book.model.Shelf;
 import com.library.library_api.book.service.shelf.GetShelfService;
@@ -23,9 +24,10 @@ public class GetShelfAPIController {
     @GetMapping("get-shelf")
     public ResponseEntity<HashMap<String, Object>> getBook(@RequestParam Long id) throws NoShelfFoundException{
         Shelf shelf = getShelfService.getShelf(id);
+        ShelfResponseDto shelfResponseDto = new ShelfResponseDto(shelf);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "Shelf fetched successfully");
-        hashMap.put("data", shelf);
+        hashMap.put("data", shelfResponseDto);
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 }
