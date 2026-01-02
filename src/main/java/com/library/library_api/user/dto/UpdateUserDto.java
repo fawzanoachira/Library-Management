@@ -6,6 +6,7 @@ import com.library.library_api.user.annotations.UniqueEmailForUpdate;
 import com.library.library_api.user.model.User;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -14,6 +15,8 @@ import lombok.Data;
 public class UpdateUserDto {
 
     @Valid
+
+    @NotNull(message = "id is required")
     private UUID id;
     private String name;
     private String email;
