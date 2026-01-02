@@ -6,31 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.library_api.book.dto.shelf.BookShelfDto;
+import com.library.library_api.book.exception.NoBookFoundException;
 import com.library.library_api.book.exception.NoShelfFoundException;
 import com.library.library_api.book.model.Book;
 import com.library.library_api.book.model.Shelf;
-import com.library.library_api.book.repository.BookRepository;
 import com.library.library_api.book.repository.ShelfRepository;
+import com.library.library_api.book.service.BookService;
 
 @Service
-public class AddBookToShelfService {
+public class RemoveBookFromShelfService {
     @Autowired
-    BookRepository bookRepository;
+    ShelfRepository shelfRepository;
 
     @Autowired
     GetShelfService getShelfService;
 
     @Autowired
-    ShelfRepository shelfRepository;
+    BookService bookService;
 
-    public Shelf addBookToShelf(Long shelfId, BookShelfDto bookShelfDto) throws NoShelfFoundException {
+    public Shelf removeBookFromShelf(Long shelfId, BookShelfDto bookShelfDto)
+            throws NoShelfFoundException, NoBookFoundException {
         Shelf shelf = getShelfService.getShelf(shelfId);
-        Book book = bookRepository.findById(bookShelfDto.getBookId()).get();
-        List<Book> listOfBooks = shelf.getBook();
+        Book book = bookService.getBook(bookShelfDto.getBookId());
+        List<Book> booksInShelf = shelf.getBook();
 
-        if (listOfBooks.stream().anyMatch(listOfBook -> book.getId().equals(listOfBook.getId()))) {
+        if (booksInShelf.stream().anyMatch(listOfBook -> book.getId().equals(listOfBook.getId()))) {
+            booksInShelf.remove(book);
         } else {
-            listOfBooks.add(book);
         }
 
         Shelf save = shelfRepository.save(shelf);
