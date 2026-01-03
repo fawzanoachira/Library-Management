@@ -19,7 +19,7 @@ public class CreateShelfService {
     UserService userService;
 
     public Shelf createShelf(ShelfCreateDto shelfCreateDto) throws NoUserFoundException {
-        User user = userService.getUser(shelfCreateDto.getUser_id());
+        User user = userService.getUser(shelfCreateDto.getUserId());
         Shelf shelf = new Shelf()
                 .setName(shelfCreateDto.getName())
                 .setUser(user);

@@ -11,7 +11,7 @@ import lombok.Data;
 public class ShelfCreateDto {
     @Valid
     @NotNull(message = "user is required")
-    private UUID user_id;
+    private UUID userId;
     @NotEmpty(message = "name is required")
     private String name;
 }
