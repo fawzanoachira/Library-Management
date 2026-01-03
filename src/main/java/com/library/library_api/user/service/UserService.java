@@ -34,8 +34,9 @@ public class UserService {
         return byEmail;
     }
 
-    public User updateUser(User user) {
-        User byId = userRepository.findById(user.getId()).get();
+    public User updateUser(User user) throws NoUserFoundException {
+        User byId = userRepository.findById(user.getId()).orElseThrow(() -> new NoUserFoundException("No user found for this id: "+ user.getId()));
+        System.out.println(byId);
         byId.setName(user.getName());
         byId.setEmail(user.getEmail());
         byId.setPasswordHashed(user.getPasswordHashed());

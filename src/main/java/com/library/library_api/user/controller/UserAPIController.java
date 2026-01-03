@@ -51,7 +51,7 @@ public class UserAPIController {
     }
 
     @PutMapping("update-user")
-    public ResponseEntity<HashMap<String, Object>> updateUser(@RequestBody @Validated UpdateUserDto updateUserDto){
+    public ResponseEntity<HashMap<String, Object>> updateUser(@RequestBody @Validated UpdateUserDto updateUserDto) throws NoUserFoundException{
         User updateUser = userService.updateUser(updateUserDto.toUser());
         UserResponseDto userResponseDto = new UserResponseDto(updateUser);
         HashMap<String, Object> hashMap = new HashMap<>();
