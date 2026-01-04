@@ -55,9 +55,10 @@ public class BookAPIController {
     @GetMapping("get-book")
     public ResponseEntity<HashMap<String, Object>> getBook(@RequestParam Long id) throws NoBookFoundException {
         Book book = bookService.getBook(id);
+        BookResponseDto bookResponseDto = new BookResponseDto(book);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("msg", "Book fetched successfully");
-        hashMap.put("data", book);
+        hashMap.put("data", bookResponseDto);
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 
