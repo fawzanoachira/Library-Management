@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "7b339433-5b4e-4c4b-910e-c82625f56d35",
+		"name": "Library Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "44991550",
+		"_collection_link": "https://fawzan-8926499.postman.co/workspace/Fawzan's-Workspace~3b4bd2ff-ea58-4172-85a3-26ce36053c28/collection/44991550-7b339433-5b4e-4c4b-910e-c82625f56d35?action=share&source=collection_link&creator=44991550"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sample2@gmail.com\",\n    \"name\": \"new user\",\n    \"passwordHashed\": \"126765\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/users/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get-user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sample@gmail.com\",\n    \"name\": \"new user\",\n    \"passwordHashed\": \"126765\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/get-user?email=sample@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"get-user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "sample@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"eb6f8ffb-83bf-42bb-a6b5-3d14979e27dd\",\n    \"email\": \"sampl2e@gmail.com\",\n    \"name\": \"new user\",\n    \"passwordHashed\": \"126765\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/users/update-user"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"eb6f8ffb-83bf-42bb-a6b5-3d14979e27dd\",\n    \"email\": \"sampl2e@gmail.com\",\n    \"name\": \"new user\",\n    \"passwordHashed\": \"126765\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/users/delete-user/eb6f8ffb-83bf-42bb-a6b5-3d14979e27dd"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "create-book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"author\": \"Dan Brown\",\n  \"title\": \"Da Vinci Code\",\n  \"description\": \"description\",\n  \"isbn\": \"ISBN345678\",\n  \"genre\": \"thriller\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/books/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get-book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/get-book?id=9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"get-book"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/books/"
+					},
+					"response": []
+				},
+				{
+					"name": "update-book",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 9,\n    \"author\": \"Dan Brown\",\n    \"title\": \"Da Vinci Code\",\n    \"description\": \"description\",\n    \"isbn\": \"ISBN345678\",\n    \"genre\": \"thriller\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/books/update-book"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/api/books/delete-book/9"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "shelf",
+			"item": [
+				{
+					"name": "create-shelf",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"eb6f8ffb-83bf-42bb-a6b5-3d14979e27dd\",\n    \"name\": \"New Shelf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/shelf/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-shelves",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/shelf/"
+					},
+					"response": []
+				},
+				{
+					"name": "get-shelf",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/shelf/get-shelf?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shelf",
+								"get-shelf"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add book to shelf",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/shelf/1/books/"
+					},
+					"response": []
+				},
+				{
+					"name": "remove book from shelf",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/shelf/1/books/"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
